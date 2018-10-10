@@ -1,6 +1,6 @@
 package net.ivanvega.sqliteenandroid.db;
 
-class Usuario {
+public class Usuario {
      int id;
 
     public int getId() {

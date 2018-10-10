@@ -71,8 +71,24 @@ public class DAOUsuarios {
 
          }
 
-       
+
         return lst;
+    }
+
+    public Cursor getAllC(){
+
+
+
+
+        Cursor c = _ad.query(
+                MiAdaptadorUsuariosConexion.TABLES_DB[0],
+                MiAdaptadorUsuariosConexion.COLUMNS_USUARIOS,
+                null, null,null,null,null
+        );
+
+
+
+        return c;
     }
 
 }
