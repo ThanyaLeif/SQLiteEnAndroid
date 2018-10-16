@@ -13,8 +13,7 @@ public class DAOUsuarios {
     private SQLiteDatabase _ad ;
 
     public DAOUsuarios(Context ctx) {
-          _ad =
-                  new MiAdaptadorUsuariosConexion(ctx).getWritableDatabase();
+          _ad = new MiAdaptadorUsuariosConexion(ctx).getWritableDatabase();
     }
 
     public long add(Usuario u)
@@ -50,10 +49,36 @@ public class DAOUsuarios {
         return 0;
     }
 
+    public int delete (int id){
+        return _ad.delete(MiAdaptadorUsuariosConexion.TABLES_DB[0], "_id=?",
+                new String[] {String.valueOf(id)});
+    }
+
+    public Usuario get(int id){
+
+        Cursor c = _ad.query(
+                MiAdaptadorUsuariosConexion.TABLES_DB[0],
+                MiAdaptadorUsuariosConexion.COLUMNS_USUARIOS,
+                "_id=?",
+                new String[] { String.valueOf(id) },
+                null,null,null
+        );
+
+        c.moveToNext();
+
+        return new Usuario(
+                c.getInt(0),
+                c.getString(1),
+                c.getString(2),
+                c.getString(3),
+                c.getString(4),
+                c.getString(5)
+        );
+
+    }
+
     public List<Usuario > getAll(){
         List <Usuario> lst = new ArrayList<Usuario>();
-
-
 
          Cursor c = _ad.query(
                 MiAdaptadorUsuariosConexion.TABLES_DB[0],
@@ -66,7 +91,7 @@ public class DAOUsuarios {
              lst.add(
                new Usuario(c.getInt(0), c.getString(1),
                        c.getString(2), c.getString(3),
-                       c.getString(4) )
+                       c.getString(4), c.getString(5))
              );
 
          }
@@ -76,17 +101,23 @@ public class DAOUsuarios {
     }
 
     public Cursor getAllC(){
-
-
-
-
         Cursor c = _ad.query(
                 MiAdaptadorUsuariosConexion.TABLES_DB[0],
                 MiAdaptadorUsuariosConexion.COLUMNS_USUARIOS,
                 null, null,null,null,null
         );
 
+        return c;
+    }
 
+    public Cursor getByName(String name) {
+        Cursor c = _ad.query(
+                MiAdaptadorUsuariosConexion.TABLES_DB[0],
+                MiAdaptadorUsuariosConexion.COLUMNS_USUARIOS,
+                "nombre like ?",
+                new String[] { "%" + name + "%"},
+                null,null,null
+        );
 
         return c;
     }

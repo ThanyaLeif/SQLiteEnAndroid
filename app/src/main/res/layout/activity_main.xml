@@ -8,43 +8,39 @@
     android:orientation="vertical">
 
     <EditText
-        android:layout_width="wrap_content"
+        android:id="@+id/txtBuscar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Ingresa nombre"
-        android:id="@+id/txtNombre"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Ingresa nombre"
-        android:id="@+id/txtEmail"/>
-
+        android:ems="10"
+        android:hint="Busqueda"
+        android:inputType="textPersonName" />
 
     <Button
-        android:id="@+id/btnI"
-        android:layout_width="wrap_content"
+        android:id="@+id/btnBuscar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:onClick="btnI_click"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="4dp"
-        android:text="Insertar"
-        />
+        android:onClick="btnCargar_click"
+        android:text="Buscar" />
 
     <Button
         android:id="@+id/btnCargar"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="btnCargar_click"
-        android:text="Cargar datos"
-         />
+        android:text="Cargar datos"/>
+
+    <Button
+        android:id="@+id/btnInsertar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="btnCargar_click"
+        android:text="Insertar"/>
+
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/lsv"
-        >
-
+        android:id="@+id/lsv">
     </ListView>
 
 </LinearLayout>
